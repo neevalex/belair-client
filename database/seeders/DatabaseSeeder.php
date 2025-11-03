@@ -30,5 +30,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('ADMIN_USER_PASSWORD', 'password')),
             'role' => 'admin',
         ]);
+
+        // add 10 random users with role = client
+        User::factory(10)->create([
+            'role' => 'client',
+        ]);
+
+        //add, 20 invoices for random users
+        \App\Models\Invoice::factory(20)->create();
+       
     }
 }
