@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'client',
         ]);
 
 
@@ -38,6 +40,11 @@ class DatabaseSeeder extends Seeder
 
         //add, 20 invoices for random users
         \App\Models\Invoice::factory(20)->create();
-       
+
+        // add, 10 invoices for Test User
+        $testUser = User::where('email', 'test@example.com')->first();
+        \App\Models\Invoice::factory(10)->create([
+            'user_id' => $testUser->id,
+        ]);
     }
 }
