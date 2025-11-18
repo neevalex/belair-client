@@ -41,10 +41,24 @@ class DatabaseSeeder extends Seeder
         //add, 20 invoices for random users
         \App\Models\Invoice::factory(20)->create();
 
-        // add, 10 invoices for Test User
+        // add, 10 invoices for Test User with random dates with 5-10 in a future date
         $testUser = User::where('email', 'test@example.com')->first();
-        \App\Models\Invoice::factory(10)->create([
+        \App\Models\Invoice::factory(2)->create([
             'user_id' => $testUser->id,
+            'date' => now()->addDays(rand(5, 10)),
         ]);
+        \App\Models\Invoice::factory(2)->create([
+            'user_id' => $testUser->id,
+            'date' => now()->subDays(rand(1, 30)),
+        ]);
+        \App\Models\Invoice::factory(2)->create([
+            'user_id' => $testUser->id,
+            'date' => now()->subDays(rand(1, 30)),
+        ]);
+        \App\Models\Invoice::factory(2)->create([
+            'user_id' => $testUser->id,
+            'date' => now()->subDays(rand(1, 30)),
+        ]);
+
     }
 }

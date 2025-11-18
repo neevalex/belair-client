@@ -12,7 +12,7 @@ class ClientAuthController extends Controller
     public function showLoginForm()
     {
         if (Auth::check() && Auth::user()->role === 'client') {
-            return redirect()->route('client.dashboard');
+            return redirect()->route('dashboard');
         }
 
         return view('auth.client-login');
@@ -41,7 +41,7 @@ class ClientAuthController extends Controller
             return back()->withErrors(['email' => 'Access restricted to client accounts.']);
         }
 
-        return redirect()->intended(route('client.dashboard'));
+        return redirect()->intended(route('dashboard'));
     }
 
     public function logout(Request $request)

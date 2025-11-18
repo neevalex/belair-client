@@ -35,6 +35,7 @@
                                 <th class="border border-gray-300 px-4 py-2">Invoice #</th>
                                 <th class="border border-gray-300 px-4 py-2">Amount</th>
                                 <th class="border border-gray-300 px-4 py-2">Date</th>
+                                <th class="border border-gray-300 px-4 py-2">Due Date</th>
                                 <th class="border border-gray-300 px-4 py-2">Type</th>
                                 <th class="border border-gray-300 px-4 py-2">Status</th>
                             </tr>
@@ -44,7 +45,8 @@
                                 <tr>
                                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $invoice->number }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center">€{{ number_format($invoice->amount / 100, 2) }}</td>
-                                    <td class="border border-gray-300 px-4 py-2 text-center">{{ $invoice->created_at->format('m/d/Y') }}</td>
+                                    <td class="border border-gray-300 px-4 py-2 text-center">{{ $invoice->created_at->format('Y-m-d') }}</td>
+                                       <td class="border border-gray-300 px-4 py-2 text-center">{{ $invoice->date}}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center">{{ ucfirst($invoice->type) }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center">{{ ucfirst($invoice->status) }}</td>
                                 </tr>

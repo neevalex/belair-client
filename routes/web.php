@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\ClientAuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Client\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -9,9 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
 // /invoices
 Route::get('invoices', function () {
@@ -27,7 +28,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/client/login', [ClientAuthController::class, 'showLoginForm'])->name('client.login');
+    Route::get('/client/login', [ClientAuthController::class, 'showLoginForm'])->name('client.login');  
     Route::post('/client/login', [ClientAuthController::class, 'login'])->name('client.login.attempt');
 });
 
