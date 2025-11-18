@@ -28,6 +28,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            //logo
+            ->brandLogo(asset('img/belairlogo.png'))
+            ->brandLogoHeight('3rem') // Logo height
             ->colors([
                 'primary' => Color::Amber,
             ])
